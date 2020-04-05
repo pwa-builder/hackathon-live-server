@@ -1,0 +1,5 @@
+{
+  "appService.showBuildDuringDeployPrompt": false,
+  "appService.defaultWebAppToDeploy": "/subscriptions/f3c84192-2d3d-43ab-9f0e-32eb8623b2a5/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/live-canvas-server",
+  "appService.deploySubpath": ""
+}
