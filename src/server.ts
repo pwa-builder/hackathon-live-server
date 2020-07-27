@@ -1,6 +1,7 @@
 import * as express from "express";
 import * as bodyParser from "body-parser";
 import * as cors from 'cors';
+import { handleConnection } from "./controllers/socket";
 
 const app = express();
 app.set("port", process.env.PORT || 3000);
@@ -13,21 +14,15 @@ let io = require("socket.io")(http);
 
 // simple '/' endpoint sending a Hello World
 // response
-app.get("/", (req: any, res: any) => {
+app.get("/", (req: express.Request, res: express.Response) => {
   res.send("hello world");
 });
 
-io.on("connection", (socket: any) => {
+// Handle connections
+io.on("connection", (socket: SocketIO.Socket) => {
   console.log("a user connected");
 
-  const room = socket.handshake['query']['r_var'];
-  socket.join(room);
-
-  socket.on('drawing', (data: any) => {
-    socket.broadcast.to(room).emit('drawing', data)
-  });
-
-  // start our simple server up on localhost:3000
+  handleConnection(socket);
 });
 
 const server = http.listen(process.env.PORT || 3000, () => {
