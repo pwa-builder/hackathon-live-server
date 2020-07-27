@@ -2,6 +2,7 @@ import * as express from "express";
 import * as bodyParser from "body-parser";
 import * as cors from 'cors';
 import { handleConnection } from "./controllers/socket";
+import { handleNewImage } from "./controllers/api";
 
 const app = express();
 app.set("port", process.env.PORT || 3000);
@@ -16,6 +17,10 @@ let io = require("socket.io")(http);
 // response
 app.get("/", (req: express.Request, res: express.Response) => {
   res.send("hello world");
+});
+
+app.post("/newImage", (req: express.Request, res: express.Response) => {
+  handleNewImage(req, res);
 });
 
 // Handle connections
