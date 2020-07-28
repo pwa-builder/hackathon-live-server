@@ -3,8 +3,9 @@ import { BlobServiceClient, BlobDownloadResponseModel, ContainerClient, BlockBlo
 let containerClient: ContainerClient = null;
 let blockBlobClient: BlockBlobClient = null;
 
+const STORAGE_CONNECTION_STRING = 'DefaultEndpointsProtocol=https;AccountName=inkinghack;AccountKey=ardpwsTJWOb4dOTCdz1wThpi5CD2QTC8+4yG6HT3l3caXUwTl3HWWn1hl9ekz/eL52aJD2bCGMcgnYuAWQ01ag==;EndpointSuffix=core.windows.net';
+
 export const initStorage = async () => {
-  const STORAGE_CONNECTION_STRING = process.env.STORAGE_CONNECTION_STRING || "";
   const blobServiceClient = BlobServiceClient.fromConnectionString(STORAGE_CONNECTION_STRING);
 
   const containerName = `newcontainer${new Date().getTime()}`;
