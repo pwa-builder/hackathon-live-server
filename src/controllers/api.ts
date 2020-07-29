@@ -1,3 +1,5 @@
+import { storeBlob } from "./storage"
+
 export const handleNewImage = (req: Express.Request, res: Express.Response) => {
- // todo: handle saved image
+ storeBlob((req as any).body.image);
 }

@@ -3,6 +3,7 @@ import * as bodyParser from "body-parser";
 import * as cors from 'cors';
 import { handleConnection } from "./controllers/socket";
 import { handleNewImage } from "./controllers/api";
+import { initStorage } from "./controllers/storage";
 
 const app = express();
 app.set("port", process.env.PORT || 3000);
@@ -12,6 +13,8 @@ app.use(cors());
 
 let http = require("http").Server(app);
 let io = require("socket.io")(http);
+
+initStorage();
 
 // simple '/' endpoint sending a Hello World
 // response
